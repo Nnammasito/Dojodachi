@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="Contenedor">
+
+    <form method="post" asp-action="Dojodachi" class="mx-auto">
+        <div class="form-group">
+            <div class="arriba">
+                <span class="text-danger">Saciedad: @Context.Session.GetInt32("Saciedad")</span>
+                <span class="text-success">Felicidad: @Context.Session.GetInt32("Felicidad")</span>
+                <span class="text-warning">Comidas: @Context.Session.GetInt32("Comidas")</span>
+                <span class="text-info">Energía: @Context.Session.GetInt32("Energia")</span>
+            </div>
+            <div class="Caja">
+                @if (ViewBag.Jugando == "Jugando")
+                {
+                    <img src="~/img/ninja.gif" alt="Dojodachi" class="img-fluid" />
+                }
+                else if (ViewBag.Jugando == "Ganaste")
+                {
+                    <img src="~/img/ninjagana.gif" alt="Dojodachi" class="img-fluid" />
+                }
+                else if (ViewBag.Jugando == "Perdiste")
+                {
+                    <img src="~/img/ninjapierde.gif" alt="Dojodachi" class="img-fluid" />
+                }
+                @ViewBag.Message
+            </div>
+            <div class="abajo">
+                @if (ViewBag.Jugando == "Jugando")
+                {
+                    <button type="submit" class="btn btn-warning btn-custom" name="operacion"
+                        value="Alimentar">Alimentar</button>
+                    <button type="submit" class="btn btn-primary btn-custom" name="operacion" value="Jugar">Jugar</button>
+                    <button type="submit" class="btn btn-danger btn-custom" name="operacion"
+                        value="Trabajar">Trabajar</button>
+                    <button type="submit" class="btn btn-success btn-custom" name="operacion" value="Dormir">Dormir</button>
+                }
+                else if (ViewBag.Jugando == "Ganaste")
+                {
+                    <button type="submit" class="btn btn-success btn-custom" name="operacion" value="Reiniciar">Volver a
+                        Jugar!</button>
+                }
+                else if (ViewBag.Jugando == "Perdiste")
+                {
+                    <button type="submit" class="btn btn-success btn-custom" name="operacion" value="Reiniciar">Volver a
+                        Jugar!</button>
+                }
+            </div>
+        </div>
+    </form>
+
+</div>
